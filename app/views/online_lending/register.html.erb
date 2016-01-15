@@ -1,0 +1,47 @@
+<%= content_for :title do %>
+	<title>Registration Page</title>
+<% end %>
+
+<div class="row">
+	<div class="col-md-6">
+		<h1>Lender</h1>
+			<% if @lender_errors %>
+				<% @lender_errors.each do |error| %>
+					<div class="alert-danger"><%= error %></div>
+				<% end %>
+			<% end %>
+			<%= simple_form_for @lender, url: online_lending_lender_path do |f| %>
+				<p><%= f.input :first_name, required: false, label: "First Name:" %></p>
+				<p><%= f.input :last_name, required: false, label: "Last Name:" %></p>
+				<p><%= f.input :email, required: false, label: "Email:" %></p>
+				<p><%= f.input :password, required: false, label: "Password:" %></p>
+				<p><%= f.input :money, required: false, label: "Money:" %></p>
+				<p><%= f.button :submit, 'Register', class: "btn btn-primary" %></p>
+			<% end %>
+
+			<%= link_to 'Already a Member?', online_lending_login_path %>
+	</div>	
+
+	<div class="col-md-6">
+		<h1>Borrower</h1>
+		
+		<% if @borrower_errors %>
+			<% @borrower_errors.each do |error| %>
+				<div class="alert-danger"><%= error %></div>
+			<% end %>
+		<% end %>
+
+		<%= simple_form_for @borrower, url: online_lending_borrower_path do |f| %>
+			<p><%= f.input :first_name, required: false, label: "First Name:" %></p>
+			<p><%= f.input :last_name, required: false, label: "Last Name:" %></p>
+			<p><%= f.input :email, required: false, label: "Email:" %></p>
+			<p><%= f.input :password, required: false, label: "Password:" %></p>
+			<p><%= f.input :purpose, required: false, label: "Need Money For:" %></p>
+			<p><%= f.input :description, required: false, label: "Description:" %></p>
+			<p><%= f.input :money, required: false, label: "Amount Needed:" %></p>
+			<p><%= f.button :submit, 'Register', class: "btn btn-primary" %></p>
+		<% end %>
+
+		<%= link_to 'Already a Member?', online_lending_login_path %>
+	</div>
+</div>
